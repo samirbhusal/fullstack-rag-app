@@ -1,0 +1,68 @@
+# Node & dependencies
+node_modules/
+npm-debug.log*
+yarn-debug.log*
+yarn-error.log*
+pnpm-debug.log*
+package-lock.json
+
+# Build output
+dist/
+build/
+*.log
+
+# Vite cache
+.vite/
+vite.config.local.*
+
+# TypeScript
+*.tsbuildinfo
+
+# Environment variables
+.env
+.env.*
+!.env.example
+
+# Local dev tools
+.idea/
+.vscode/
+*.suo
+*.ntvs*
+*.njsproj
+*.sln
+.DS_Store
+
+# OS files
+Thumbs.db
+.DS_Store
+ehthumbs.db
+Icon?
+
+# Test coverage
+coverage/
+*.lcov
+
+# Optional: FastAPI backend (if in same repo)
+__pycache__/
+*.pyc
+*.pyo
+*.pyd
+*.sqlite3
+*.db
+instance/
+.env.local
+venv/
+env/
+.venv/
+
+# Optional: macOS and Python cache
+*.egg-info/
+*.eggs/
+.mypy_cache/
+.pytest_cache/
+
+# Optional: Editor temp
+*.swp
+*.bak
+*.tmp
+*.orig
