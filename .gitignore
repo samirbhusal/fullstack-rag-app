@@ -10,6 +10,7 @@ package-lock.json
 dist/
 build/
 *.log
+chroma_db/
 
 # Vite cache
 .vite/
