@@ -117,7 +117,7 @@ npm run dev
 ## 📂 Project Structure
 
 ```text
-rag-chatbot-frontend/
+fullstack-rag-app/
 ├── src/
 │   ├── backend/
 │   │   ├── app.py           # Main FastAPI entry point

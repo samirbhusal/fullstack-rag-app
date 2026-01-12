@@ -5,6 +5,7 @@ import { RetrievalResults } from "./pages/RetrievalResults";
 import { AiSummary } from "./pages/AiSummary";
 import { ImpactDashboard } from "./pages/ImpactDashboard";
 import { KnowledgeBaseUpload } from "./components/KnowledgeBaseUpload";
+import ProtectedRoutes from "./utils/ProtectedRoutes";
 
 export function AppRouter() {
   return (
@@ -15,7 +16,9 @@ export function AppRouter() {
         <Route path="/retrieval-results" element={<RetrievalResults />} />
         <Route path="/ai-summary" element={<AiSummary />} />
         <Route path="/impact-dashboard" element={<ImpactDashboard />} />
-        <Route path="/upload-docs" element={<KnowledgeBaseUpload />} />
+        <Route element={<ProtectedRoutes />}>
+          <Route path="/upload-docs" element={<KnowledgeBaseUpload />} />
+        </Route>
       </Routes>
     </BrowserRouter>
   );
