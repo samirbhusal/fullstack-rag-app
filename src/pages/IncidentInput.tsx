@@ -3,12 +3,13 @@ import { useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 // import {ProgressBar} from '../components/ProgressBar';
 import { SearchIcon } from "lucide-react";
+import CommonErrorMessage from "../components/CommonErrorMessage";
 
 export const IncidentInput: React.FC = () => {
   const navigate = useNavigate();
-  const [incident, setIncident] = useState("sdfsd");
+  const [incident, setIncident] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
-  const [error, setError] = useState<Boolean | null>(null);
+  const [error, setError] = useState<boolean>(false);
   // const [progress, setProgress] = useState(0);
   const handleAnalyze = async () => {
     // Simulate progress
@@ -66,11 +67,10 @@ export const IncidentInput: React.FC = () => {
             <SearchIcon className="absolute right-3 top-3 h-5 w-5 text-gray-400" />
           </div>
 
-          {error && (
-            <p className="text-red-600 mt-3">
-              Please enter a valid incident description.
-            </p>
-          )}
+          <CommonErrorMessage
+            error={error}
+            message="Please enter a valid incident description."
+          />
         </div>
 
         {isAnalyzing ? (

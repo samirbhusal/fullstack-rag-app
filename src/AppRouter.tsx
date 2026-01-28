@@ -6,12 +6,14 @@ import { AiSummary } from "./pages/AiSummary";
 import { ImpactDashboard } from "./pages/ImpactDashboard";
 import { KnowledgeBaseUpload } from "./components/KnowledgeBaseUpload";
 import ProtectedRoutes from "./utils/ProtectedRoutes";
+import Login from "./pages/Login";
 
 export function AppRouter() {
   return (
     <BrowserRouter>
       <Routes>
         <Route path="/" element={<Home />} />
+        <Route path="/login" element={<Login />} />
         <Route path="/incident-input" element={<IncidentInput />} />
         <Route path="/retrieval-results" element={<RetrievalResults />} />
         <Route path="/ai-summary" element={<AiSummary />} />

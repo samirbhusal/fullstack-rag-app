@@ -95,6 +95,16 @@ uvicorn app:app --reload
 uvicorn src.backend.app:app --reload
 ```
 
+**Other useful commands**
+
+```bash
+1. ./.venv/bin/pip freeze > requirements.txt
+2. pip install -r requirements.txt
+3. python3 -m venv .venv  --> initialize the enviroment
+4. source .venv/bin/activate   --> start using the environment
+5. rm -rf .venv --> Delete the .venv folder
+```
+
 ### Start the Frontend
 
 ```bash
@@ -104,7 +114,6 @@ npm run dev
 ## 📖 How to Use
 
 1.  **Build the Knowledge Base:**
-
     - Navigate to the **Knowledge Base** page: /upload-docs
     - Upload your technical documents (PDFs, manuals, logs).
     - The backend will chunk, embed, and store these in ChromaDB.
