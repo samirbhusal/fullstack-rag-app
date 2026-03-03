@@ -1,5 +1,6 @@
 import pypdf
 import docx
+import json
 
 
 def extract_text_from_file(file):
@@ -8,7 +9,7 @@ def extract_text_from_file(file):
 
     try: 
         if filename.endswith(".txt"):
-            content = file.file.read() if hasattr(file, "file") else file.read()
+            content = file.read() if hasattr(file, "file") else file.read()
             return content.decode("utf-8", errors="ignore")
         
         elif filename.endswith(".json"):

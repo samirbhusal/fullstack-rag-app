@@ -24,6 +24,22 @@ app.add_middleware(
 def health_check():
     return {"status": "Backend is running"}
 
+@app.post("/auth/login")
+async def login(payload: dict = Body(...)):
+    """
+    Validates credentials against ADMIN_USERNAME and ADMIN_PASSWORD in .env
+    """
+    username = payload.get("username", "")
+    password = payload.get("password", "")
+
+    admin_username = os.getenv("ADMIN_USERNAME")
+    admin_password = os.getenv("ADMIN_PASSWORD")
+
+    if username == admin_username and password == admin_password:
+        return {"success": True}
+    
+    raise HTTPException(status_code=401, detail="Invalid username or password")
+
 @app.post("/upload-docs")
 async def upload_knowledge_base(files: list[UploadFile] = File(...)):
     """

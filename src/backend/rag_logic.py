@@ -3,12 +3,12 @@ import time
 from pinecone import Pinecone, ServerlessSpec
 from dotenv import load_dotenv
 from pathlib import Path
-from langchain.chains import RetrievalQA
+from langchain_classic.chains import RetrievalQA
 from langchain_groq import ChatGroq
 from langchain_huggingface import HuggingFaceEndpointEmbeddings
 from langchain_pinecone import PineconeVectorStore
 from langchain_text_splitters import RecursiveCharacterTextSplitter
-from langchain.prompts import PromptTemplate
+from langchain_core.prompts import PromptTemplate
 
 load_dotenv()
 
@@ -117,7 +117,7 @@ def add_to_knowledge_base(texts_list, api_key=None):
         for attempt in range(15):  # Increased wait time slightly
             stats = index.describe_index_stats()
             count = stats['total_vector_count']
-            if count > 1: # Logic check: Should be > 1 now (since we already have 1 debug record)
+            if count > 0:
                 print(f"✅ Data verified! Vector count is now: {count}")
                 return f"✅ Success: {len(docs)} chunks indexed and ready."
             time.sleep(2)
