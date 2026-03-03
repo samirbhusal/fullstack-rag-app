@@ -17,7 +17,7 @@ app.add_middleware(
     allow_origins=[
         "http://localhost:5173",
         "http://127.0.0.1:5173",
-        "https://your-app.vercel.app",  # ← replace with your actual Vercel URL after deploying
+        "https://fullstack-rag-app-ten.vercel.app",  # Vercel frontend
     ],
     allow_credentials=True,
     allow_methods=["*"],
