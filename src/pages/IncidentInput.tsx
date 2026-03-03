@@ -10,6 +10,7 @@ export const IncidentInput: React.FC = () => {
   const [incident, setIncident] = useState("");
   const [isAnalyzing, setIsAnalyzing] = useState(false);
   const [error, setError] = useState<boolean>(false);
+  const [fetchError, setFetchError] = useState<string | null>(null);
   // const [progress, setProgress] = useState(0);
   const handleAnalyze = async () => {
     // Simulate progress
@@ -28,15 +29,29 @@ export const IncidentInput: React.FC = () => {
       return;
     }
     setIsAnalyzing(true);
-    const response = await fetch("http://127.0.0.1:8000/analyze", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ incident }),
-    });
+    setFetchError(null);
+    try {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/analyze`, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({ incident }),
+      });
 
-    const data = await response.json();
-    console.log("LLM Response:", data.response);
-    navigate("/retrieval-results", { state: { llmResponse: data.response } });
+      if (!response.ok) {
+        throw new Error(`Server error: ${response.status} ${response.statusText}`);
+      }
+
+      const data = await response.json();
+      console.log("LLM Response:", data.response);
+      navigate("/retrieval-results", { state: { llmResponse: data.response } });
+    } catch (err) {
+      console.error("Analysis failed:", err);
+      setFetchError(
+        err instanceof Error ? err.message : "Failed to connect to backend. Is the server running?"
+      );
+    } finally {
+      setIsAnalyzing(false);
+    }
   };
 
   const handleInputChange = (e: React.ChangeEvent<HTMLTextAreaElement>) => {
@@ -71,6 +86,9 @@ export const IncidentInput: React.FC = () => {
             error={error}
             message="Please enter a valid incident description."
           />
+          {fetchError && (
+            <p className="mt-2 text-sm text-red-600 font-medium">{fetchError}</p>
+          )}
         </div>
 
         {isAnalyzing ? (

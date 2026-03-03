@@ -5,7 +5,7 @@ import { Button } from "../components/Button";
 
 export const KnowledgeBaseUpload: React.FC = () => {
   const navigate = useNavigate();
-  const [uploading, setUploading] = useState<Boolean>(false);
+  const [uploading, setUploading] = useState<boolean>(false);
   const [files, setFiles] = useState<File[]>([]);
 
   const handleFileChange = (e: React.ChangeEvent<HTMLInputElement>) => {
@@ -22,7 +22,7 @@ export const KnowledgeBaseUpload: React.FC = () => {
     files.forEach((file) => formData.append("files", file));
 
     try {
-      const response = await fetch("http://127.0.0.1:8000/upload-docs", {
+      const response = await fetch(`${import.meta.env.VITE_API_URL}/upload-docs`, {
         method: "POST",
         body: formData,
       });

@@ -3,23 +3,23 @@ import { useLocation, useNavigate } from "react-router-dom";
 import { Button } from "../components/Button";
 import { Card } from "../components/Card";
 import { ConfidenceBar } from "../components/ConfidenceBar";
-import { FileTextIcon, FileIcon, BookOpenIcon } from "lucide-react";
+import { FileTextIcon, FileIcon, BookOpenIcon, ArrowLeft } from "lucide-react";
 export const RetrievalResults: React.FC = () => {
   const navigate = useNavigate();
   const location = useLocation();
   const llmResponse = location.state?.llmResponse;
-  const documents = [
-    {
-      id: 1,
-      title: "MFA Configuration Guide",
-      confidence: 92,
-      source: "IT Knowledge Base",
-      snippet:
-        "VPN login failures commonly occur after MFA updates due to token synchronization issues. Reset the MFA token and ensure the VPN client is updated to the latest version.",
-      icon: FileTextIcon,
-      viewDoc: "View Document →",
-      lastUpldateInfo: "Last updated: 2023-11-05",
-    },
+  const documents: any[] = [
+    // {
+    //   id: 1,
+    //   title: "MFA Configuration Guide",
+    //   confidence: 92,
+    //   source: "IT Knowledge Base",
+    //   snippet:
+    //     "VPN login failures commonly occur after MFA updates due to token synchronization issues. Reset the MFA token and ensure the VPN client is updated to the latest version.",
+    //   icon: FileTextIcon,
+    //   viewDoc: "View Document →",
+    //   lastUpldateInfo: "Last updated: 2023-11-05",
+    // },
     // {
     //   id: 2,
     //   title: "Incident #4872 - VPN Authentication Failure",
@@ -46,6 +46,13 @@ export const RetrievalResults: React.FC = () => {
   return (
     <div className="min-h-screen w-full bg-secondary py-12 px-4">
       <div className="max-w-4xl mx-auto">
+        <Button
+          variant="outline"
+          onClick={() => navigate("/incident-input")}
+          className="mb-6 flex items-center gap-2"
+        >
+          <ArrowLeft size={16} /> Back
+        </Button>
         <h1 className="text-3xl font-poppins font-semibold text-textDark mb-2">
           Retrieved Documents
         </h1>
@@ -58,10 +65,10 @@ export const RetrievalResults: React.FC = () => {
             <p className="text-gray-700 whitespace-pre-line">{llmResponse}</p>
           </div>
         )}
-        <p className="text-gray-600 mb-8">
+        {/* <p className="text-gray-600 mb-8">
           Found {documents.length} relevant documents for "VPN login failure
           after MFA update"
-        </p>
+        </p> */}
         <div className="space-y-6 mb-8">
           {documents.map((doc) => (
             <Card key={doc.id} className="border-l-4 border-accent">
@@ -92,11 +99,11 @@ export const RetrievalResults: React.FC = () => {
             </Card>
           ))}
         </div>
-        <div className="flex justify-center">
+        {/* <div className="flex justify-center">
           <Button onClick={() => navigate("/ai-summary")} className="px-8">
             Generate Resolution Summary
           </Button>
-        </div>
+        </div> */}
       </div>
     </div>
   );

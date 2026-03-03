@@ -87,6 +87,10 @@ uvicorn app:app --reload
 
 ```bash
 ./.venv/bin/python -m uvicorn app:app --reload
+
+OR
+
+/opt/anaconda3/bin/python -m uvicorn app:app --reload
 ```
 
 **Option 3 (Specify Path: If running from the project root:):**
